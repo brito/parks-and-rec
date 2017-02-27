@@ -22,3 +22,8 @@
 
 1. [OEPE Documentation](http://www.oracle.com/technetwork/developer-tools/eclipse/documentation/index.html)
 2. [Tutorials](http://www.oracle.com/technetwork/developer-tools/eclipse/overview/tutorials-101794.html)
+
+## About
+
+This repository is provided as-is and is a bare-bones demonstration of a couple of MAF abilities. There are many more examples that come with OEPE and tutorials available to help you integrate with MCS and other backends, for example.
+
