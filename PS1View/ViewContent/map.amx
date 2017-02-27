@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:amx="http://xmlns.oracle.com/adf/mf/amx"
+	xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+	<amx:panelPage>
+		<amx:facet name="header">
+			<amx:fragment src="dashboard.amxf" />
+		</amx:facet>
+
+		<amx:refreshContainer action="list" pullText="My Reservations">
+			<amx:panelStretchLayout>
+				<amx:facet name="top">
+					<amx:listView>
+					</amx:listView>
+				</amx:facet>
+
+
+				<amx:facet name="center">
+					<dvtm:geographicMap initialZooming="15"
+						mapBoundsChangeListener="#{Location.change}" mapInputListener="#{Location.input}">
+						
+						<dvtm:pointDataLayer rendered="#{Location.type != 'fa-crosshairs'}">
+							<dvtm:pointLocation pointX="#{Location.longitude}"
+								pointY="#{Location.latitude}">
+								<dvtm:marker labelDisplay="on" value="#{Location.name}" />
+							</dvtm:pointLocation>
+						</dvtm:pointDataLayer>
+
+						<dvtm:pointDataLayer rendered="#{pageFlowScope.showNear}">
+							<dvtm:pointLocation pointX="-78.7527497" pointY="42.0936384">
+								<dvtm:marker labelDisplay="on" value="Restroom" />
+							</dvtm:pointLocation>
+							<dvtm:pointLocation pointX="-78.746331" pointY="42.098784">
+								<dvtm:marker labelDisplay="on" value="ATM" />
+							</dvtm:pointLocation>
+						</dvtm:pointDataLayer>
+
+						<dvtm:pointDataLayer value="#{Location.locations}"
+							var="location">
+							<dvtm:pointLocation pointX="#{location.longitude}"
+								pointY="#{location.latitude}"
+								rendered="#{pageFlowScope.showSaved or location.type != 'fa-bookmark'}">
+								<dvtm:marker labelDisplay="on" value="#{location.name}" />
+							</dvtm:pointLocation>
+						</dvtm:pointDataLayer>
+					</dvtm:geographicMap>
+				</amx:facet>
+
+
+				<amx:facet name="bottom">
+					<amx:listView var="location" value="#{Location.locations}"
+						showMoreStrategy="autoScroll" bufferStrategy="viewport" layout="rows"
+						halign="start">
+						<amx:listItem action="item"
+							rendered="#{pageFlowScope.showSaved or location.type != 'fa-bookmark'}">
+							<amx:outputText styleClass="#{location.type}"
+								value="#{location.name}" />
+						</amx:listItem>
+					</amx:listView>
+
+					<amx:listView>
+						<amx:listItem action="item" showLinkIcon="#{!pageFlowScope.edit}">
+							<amx:accessoryLayout startFullTriggerSelector="fa-pencil">
+								<amx:facet name="start">
+									<amx:commandLink text="Save" styleClass="fa-bookmark">
+										<amx:setPropertyListener from="true" to="#{pageFlowScope.edit}"/>
+									</amx:commandLink>
+								</amx:facet>
+								<amx:outputText styleClass="#{Location.type}"
+									value="#{Location.name}" rendered="#{!pageFlowScope.edit}" />
+								<amx:inputText label="Name" value="#{Location.name}"
+									rendered="#{pageFlowScope.edit}" />
+								<amx:outputText value="#{Location.latitude}, #{Location.longitude}"
+									inlineStyle="font:.78em/1 monospace; color:gray" />
+							</amx:accessoryLayout>
+						</amx:listItem>
+
+						<amx:listItem showLinkIcon="false" inlineStyle="text-align:center"
+							rendered="#{pageFlowScope.edit}">
+							<amx:commandButton styleClass="fa-close" text="Cancel">
+								<amx:setPropertyListener from="false"
+									to="#{pageFlowScope.edit}" />
+							</amx:commandButton>
+							<amx:commandButton styleClass="fa-bookmark"
+								action="save" text="Save">
+								<amx:setPropertyListener from="false"
+									to="#{pageFlowScope.edit}" />
+							</amx:commandButton>
+						</amx:listItem>
+
+						<amx:listItem showLinkIcon="false" inlineStyle="text-align:center"
+							rendered="#{!pageFlowScope.edit}">
+							<amx:commandButton action="home" styleClass="fa-home" />
+							<amx:commandButton action="getCurrentPosition"
+								styleClass="fa-location-arrow" text="GPS" />
+							<amx:commandButton action="getNearby"
+								styleClass="fa-map-marker" text="Near">
+								<amx:setPropertyListener from="#{!pageFlowScope.showNear}"
+									to="#{pageFlowScope.showNear}" />
+							</amx:commandButton>
+							<amx:commandButton action="getSaved"
+								styleClass="fa-bookmark" text="Saved">
+								<amx:setPropertyListener from="#{!pageFlowScope.showSaved}"
+									to="#{pageFlowScope.showSaved}" />
+							</amx:commandButton>
+						</amx:listItem>
+					</amx:listView>
+				</amx:facet>
+			</amx:panelStretchLayout>
+
+		</amx:refreshContainer>
+
+
+
+		<amx:facet name="footer">
+			<amx:fragment src="nav.amxf" />
+		</amx:facet>
+	</amx:panelPage>
+</amx:view>

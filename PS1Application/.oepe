@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<oepe:metadata xmlns:oepe="http://xmlns.oracle.com/oepe/metadata/1.0">
+  <oepe:mobileProject assemblyProject="PS1" defaultPackage="com.oraclecorp.internal.ent3.NAS.publicsector1.ps1application"/>
+</oepe:metadata>

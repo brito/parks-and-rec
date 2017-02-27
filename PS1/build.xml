@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="NYS Parks" default="all" basedir=".">
+	<property name="appid" value="com.oraclecorp.internal.ent3.NAS.publicsector1" />
+<!--
+┌─┐┬  ┬  
+├─┤│  │  
+┴ ┴┴─┘┴─┘ -->
+	<target name="all" depends="version, configure" />
+<!--
+┬  ┬┌─┐┬─┐┌─┐┬┌─┐┌┐┌
+└┐┌┘├┤ ├┬┘└─┐││ ││││
+ └┘ └─┘┴└─└─┘┴└─┘┘└┘ -->
+	<target name="version" description="Advance build version every build using semantic versioning">
+		<property name="version.major" value="0" />
+		<property name="version.minor" value="1" />
+		<property name="version.patch" value="0" />
+		<!-- Prevent replacing xml version -->
+		<replaceregexp file="${basedir}/adf/META-INF/maf-application.xml" 
+			match="xml version=&quot;1.0&quot;" replace="xml version='1.0'" />
+		<tstamp>
+			<format property="version.tstamp" pattern="zyyyyMMdd.kkmm" />
+		</tstamp>
+		<!-- semver.org Semantic Versioning -->
+		<property name="version" value="${version.major}.${version.minor}.${version.patch}+${version.tstamp}" />
+		<echo>version: ${version}</echo>
+		<!-- 
+		BUGFIX: When deploying to iTunes, the application is deployed only if this version is advanced 
+		-->
+		<replaceregexp file="${basedir}/adf/META-INF/maf-application.xml" 
+			match="version=&quot;.+?&quot;" replace="version=&quot;${version}&quot;" />
+	</target>
+<!--
+┌─┐┌─┐┌┐┌┌─┐┬┌─┐┬ ┬┬─┐┌─┐
+│  │ ││││├┤ ││ ┬│ │├┬┘├┤ 
+└─┘└─┘┘└┘└  ┴└─┘└─┘┴└─└─┘ -->
+	<target name="configure">
+		<echo>maf-application.xml</echo>
+
+		<replaceregexp file="${basedir}/adf/META-INF/maf-application.xml" 
+			match="(name=)&quot;.+?&quot;" replace="\1&quot;${ant.project.name}&quot;" />
+		<echo>  name=${ant.project.name}</echo>
+
+		<replaceregexp file="${basedir}/adf/META-INF/maf-application.xml" 
+			match="(id=)&quot;.+?&quot;" replace="\1&quot;${appid}&quot;" />
+		<echo>  id=${appid}</echo>
+	</target>
+	
+<!--
+┬┌─┐┌─┐┌┐┌   ┌─┐┬─┐┌─┐┌┬┐   ┬  ┌─┐┌─┐┌─┐
+││  │ ││││───├┤ ├┬┘│ ││││───│  │ ││ ┬│ │
+┴└─┘└─┘┘└┘   └  ┴└─└─┘┴ ┴   ┴─┘└─┘└─┘└─┘ -->
+	<target name="icon-from-logo">
+		<!-- requires imagemagick -->
+		<exec executable="/opt/local/bin/convert" dir="${basedir}/..">
+			<arg line="brand/logo.png -gravity center -resize 1024 -extent 1024x1024 icon.png"/>
+		</exec>
+	</target>
+	
+<!--
+┬─┐┌─┐┌─┐┌─┐┬ ┬┬─┐┌─┐┌─┐┌─┐   ┌─┐┬─┐┌─┐┌┬┐   ┬┌─┐┌─┐┌┐┌
+├┬┘├┤ └─┐│ ││ │├┬┘│  ├┤ └─┐───├┤ ├┬┘│ ││││───││  │ ││││
+┴└─└─┘└─┘└─┘└─┘┴└─└─┘└─┘└─┘   └  ┴└─└─┘┴ ┴   ┴└─┘└─┘┘└┘ -->
+	<target name="resources-from-icon">
+		<exec executable="/usr/local/bin/node" dir="${basedir}/..">
+			<arg line="build-tools/resources.js"/>
+		</exec>
+		<move file="${basedir}/../res" tofile="${basedir}/res"/>
+	</target>
+	
+<!--
+┌┐┌┬┌┐┌┌─┐┌─┐┌─┐┌┬┐┌─┐┬ ┬   ┌─┐┬─┐┌─┐┌┬┐   ┬┌─┐┌─┐┌┐┌
+│││││││├┤ ├─┘├─┤ │ │  ├─┤───├┤ ├┬┘│ ││││───││  │ ││││
+┘└┘┴┘└┘└─┘┴  ┴ ┴ ┴ └─┘┴ ┴   └  ┴└─└─┘┴ ┴   ┴└─┘└─┘┘└┘ -->
+	<target name="ninepatch-from-icon">
+		<exec executable="/usr/local/bin/node" dir="${basedir}/..">
+			<arg line="build-tools/ninepatch.js"/>
+		</exec>
+		<move file="${basedir}/../ninepatch-output" tofile="${basedir}/res/android"/>
+	</target>
+	
+</project>

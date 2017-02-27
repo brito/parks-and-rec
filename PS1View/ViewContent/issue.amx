@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:amx="http://xmlns.oracle.com/adf/mf/amx" xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+	<amx:panelPage>
+		<amx:facet name="header">
+			<amx:outputText value="Known Issues" />
+		</amx:facet>
+
+		<amx:refreshContainer pullText="Pull to Synchronize"
+			subText="Report unsent issues and receive updates">
+
+
+			<amx:listView>
+				<amx:listItem rendered="#{!pageFlowScope.newIssue}"
+					showLinkIcon="false">
+					<amx:commandButton styleClass="fa-plus-square-o"
+						text="Report an Issue">
+						<amx:setPropertyListener from="true"
+							to="#{pageFlowScope.newIssue}" />
+					</amx:commandButton>
+				</amx:listItem>
+				<amx:listItem rendered="#{pageFlowScope.newIssue}"
+					showLinkIcon="false">
+					<amx:inputText styleClass="#{pageFlowScope.issueType or 'fa-plus-square-o'}"
+						value="#{pageFlowScope.title}" hintText="Report an Issue" />
+					<amx:selectOneButton value="#{pageFlowScope.issueType}">
+						<amx:selectItem label="Safety" value="fa-shield" />
+						<amx:selectItem label="Maintenance" value="fa-warning" />
+						<amx:selectItem label="Other" value="fa-leaf" />
+					</amx:selectOneButton>
+					<amx:commandButton styleClass="fa-close" text="Cancel">
+						<amx:setPropertyListener from="false"
+							to="#{pageFlowScope.newIssue}" />
+					</amx:commandButton>
+					<amx:commandButton styleClass="fa-bullhorn" text="Report">
+						<amx:setPropertyListener from="false"
+							to="#{pageFlowScope.newIssue}" />
+					</amx:commandButton>
+					<amx:panelFormLayout fieldHalign="start"
+						labelPosition="end" labelWidth="161px">
+						<amx:inputText label="What is the issue?" value="#{pageFlowScope.title}" />
+						<amx:panelLabelAndMessage label="Photos">
+							<amx:commandButton styleClass="fa-camera" text="Add" />
+						</amx:panelLabelAndMessage>
+						<amx:panelLabelAndMessage label="Where?">
+							<amx:commandButton styleClass="fa-home"
+								text="Anderson Cabin 001" />
+						</amx:panelLabelAndMessage>
+						<amx:inputDate label="When?" value="#{applicationScope.time}"
+							inputType="datetime" />
+						<amx:inputText rows="10" label="Any more details?" />
+					</amx:panelFormLayout>
+				</amx:listItem>
+			</amx:listView>
+
+			<amx:outputText value="Current" inlineStyle="font-size:.78rem; text-transform:uppercase; padding-left:1rem"/>
+			<amx:listView>
+				<amx:listItem>
+					<amx:outputText styleClass="fa-warning"
+						value="Fallen Tree near Cabin 001" />
+				</amx:listItem>
+				<amx:listItem>
+					<amx:outputText styleClass="fa-leaf" value="Need Firewood" />
+				</amx:listItem>
+			</amx:listView>
+
+			<amx:outputText value="Past" inlineStyle="font-size:.78rem; text-transform:uppercase; padding-left:1rem"/>
+			<amx:listView>
+				<amx:listItem>
+					<amx:outputText inlineStyle="color:gray" styleClass="fa-clock-o"
+						value="Lost my camera" />
+				</amx:listItem>
+				<amx:listItem>
+					<amx:outputText inlineStyle="color:gray" styleClass="fa-check"
+						value="Big rock blocking path" />
+				</amx:listItem>
+				<amx:listItem>
+					<amx:outputText inlineStyle="color:gray" styleClass="fa-check"
+						value="Feedback" />
+				</amx:listItem>
+			</amx:listView>
+		</amx:refreshContainer>
+		
+		<amx:facet name="footer">
+			<amx:fragment src="nav.amxf" />
+		</amx:facet>
+	</amx:panelPage>
+</amx:view>

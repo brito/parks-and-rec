@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adfc-mobile-config xmlns="http://xmlns.oracle.com/adf/controller" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/adf/controller http://xmlns.oracle.com/adf/controller/adfc-mobile-config.xsd">
+    <task-flow-definition id="task-flow-definition">
+        <default-activity>Dashboard</default-activity>
+        <managed-bean>
+            <managed-bean-name>Location</managed-bean-name>
+            <managed-bean-class>com.oraclecorp.internal.ent3.NAS.publicsector1.Location</managed-bean-class>
+            <managed-bean-scope>view</managed-bean-scope>
+        </managed-bean>
+        <view id="Map">
+            <page>/map.amx</page>
+        </view>
+        <view id="Item">
+            <page>/item.amx</page>
+        </view>
+        <view id="list">
+            <page>/list.amx</page>
+        </view>
+        <view id="Issue">
+            <page>/issue.amx</page>
+        </view>
+        <view id="Dashboard">
+            <page>/dashboard.amx</page>
+        </view>
+        <method-call id="getCurrentPosition">
+            <method>#{Location.getCurrentPosition}</method>
+            <outcome>
+                <fixed-outcome>map</fixed-outcome>
+            </outcome>
+        </method-call>
+        <method-call id="save">
+            <method>#{Location.save}</method>
+            <outcome>
+                <fixed-outcome>map</fixed-outcome>
+            </outcome>
+        </method-call>
+        <method-call id="home">
+            <method>#{Location.home}</method>
+            <outcome>
+                <fixed-outcome>map</fixed-outcome>
+            </outcome>
+        </method-call>
+        <control-flow-rule>
+            <from-activity-id>Map</from-activity-id>
+            <control-flow-case>
+                <from-outcome>getCurrentPosition</from-outcome>
+                <to-activity-id>getCurrentPosition</to-activity-id>
+            </control-flow-case>
+            <control-flow-case>
+                <from-outcome>home</from-outcome>
+                <to-activity-id>home</to-activity-id>
+                <transition>none</transition>
+            </control-flow-case>
+            <control-flow-case>
+                <from-outcome>save</from-outcome>
+                <to-activity-id>save</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule>
+            <from-activity-id>*</from-activity-id>
+            <control-flow-case>
+                <from-outcome>map</from-outcome>
+                <to-activity-id>Map</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule>
+            <from-activity-id>*</from-activity-id>
+            <control-flow-case>
+                <from-outcome>item</from-outcome>
+                <to-activity-id>Item</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule>
+            <from-activity-id>*</from-activity-id>
+            <control-flow-case>
+                <from-outcome>list</from-outcome>
+                <to-activity-id>list</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule>
+            <from-activity-id>*</from-activity-id>
+            <control-flow-case>
+                <from-outcome>issue</from-outcome>
+                <to-activity-id>Issue</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule>
+            <from-activity-id>*</from-activity-id>
+            <control-flow-case>
+                <from-outcome>dashboard</from-outcome>
+                <to-activity-id>Dashboard</to-activity-id>
+                <transition>fade</transition>
+            </control-flow-case>
+        </control-flow-rule>
+    </task-flow-definition>
+</adfc-mobile-config>

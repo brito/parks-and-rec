@@ -1,0 +1,19 @@
+<amx:fragmentDef xmlns:amx="http://xmlns.oracle.com/adf/mf/amx">
+	<fragment xmlns="http://xmlns.oracle.com/adf/mf/amx/fragment">
+		<attribute>
+			<attribute-type>String</attribute-type>
+			<attribute-name>layout</attribute-name>
+			<default-value>horizontal</default-value>
+		</attribute>
+	</fragment>
+
+	<amx:panelGroupLayout layout="#{layout}">
+		<amx:commandButton action="map" styleClass="fa-map-signs"
+			text="Map" />
+		<amx:commandButton action="list" styleClass="fa-barcode"
+			text="Reservations" />
+		<amx:commandButton action="issue" styleClass="fa-warning"
+			text="Issues" />
+	</amx:panelGroupLayout>
+
+</amx:fragmentDef>

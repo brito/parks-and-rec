@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:amx="http://xmlns.oracle.com/adf/mf/amx" xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+	<amx:panelPage>
+		<amx:facet name="header">
+			<amx:outputText value="My Reservations" />
+		</amx:facet>
+		
+		<amx:refreshContainer busyText="Updating..."
+			pullText="Pull to update" subText="Last updated #{applicationScope.time}">
+			<amx:listView>
+				<amx:listItem action="item">
+					<amx:outputText styleClass="fa-barcode" value="Anderson Cabin 001" />
+					<amx:outputText inlineStyle="font:.78rem/1 monospace; text-align:left"
+						value="10/25 - 10/28" />
+				</amx:listItem>
+				<amx:listItem action="item">
+					<amx:outputText styleClass="fa-barcode" value="Anderson Cabin 003" />
+					<amx:outputText inlineStyle="font:.78rem/1 monospace; text-align:left"
+						value="12/21 - 12/28" />
+				</amx:listItem>
+				<amx:listItem action="item">
+					<amx:outputText styleClass="fa-history" value="History" inlineStyle="color:gray"/>
+					<amx:outputText inlineStyle="font:.78rem/1 monospace; text-align:left"
+						value="Previous visits" />
+				</amx:listItem>
+			</amx:listView>
+		</amx:refreshContainer>
+		
+		<amx:facet name="footer">
+			<amx:fragment src="nav.amxf" />
+		</amx:facet>
+	</amx:panelPage>
+</amx:view>

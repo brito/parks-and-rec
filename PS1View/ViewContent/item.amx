@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:amx="http://xmlns.oracle.com/adf/mf/amx" xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+	<amx:panelPage>
+		<amx:facet name="header">
+			<amx:outputText value="#{Location.name}" />
+		</amx:facet>
+		<amx:facet name="primary">
+			<amx:commandButton action="__back" />
+		</amx:facet>
+
+		<amx:commandLink>
+			<amx:showPopupBehavior />
+			<amx:image inlineStyle="display:block; margin:auto; width:100%"
+				source="data:image/jpeg;base64,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" />
+			<amx:outputText value="Show access code at the gate"
+				inlineStyle="font-size:.78rem; display:block; text-align:center" />
+		</amx:commandLink>
+
+		<amx:panelFormLayout fieldHalign="start"
+			labelPosition="end" labelWidth="161px">
+			<amx:panelLabelAndMessage label="Site">
+				<amx:commandButton action="map" styleClass="fa-home"
+					text="#{Location.name}" />
+			</amx:panelLabelAndMessage>
+			<amx:inputDate label="From" value="10/25/2016" />
+			<amx:inputDate label="Until" value="10/28/2016" />
+			<amx:inputText label="Loop" value="Anderson" readOnly="true" />
+			<amx:inputText label="Type" value="Cabin" readOnly="true" />
+			<amx:inputText label="Rooms" value="3" readOnly="true" />
+			<amx:inputText label="Bedrooms" value="2" readOnly="true" />
+			<amx:selectBooleanCheckbox label="Electric Heating"
+				value="true"/>
+			<amx:inputText label="Beds" value="4" readOnly="true" />
+			<amx:inputText label="Lighting" value="Electric"
+				readOnly="true" />
+			<amx:inputText label="Porch" value="Open" readOnly="true" />
+		</amx:panelFormLayout>
+
+		<amx:facet name="footer">
+			<amx:fragment src="nav.amxf" />
+		</amx:facet>
+	</amx:panelPage>
+</amx:view>

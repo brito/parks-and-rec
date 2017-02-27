@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<oepe:metadata xmlns:oepe="http://xmlns.oracle.com/oepe/metadata/1.0">
+  <oepe:mobileAssembly runtimeVersion="2.3.1">
+    <oepe:applicationController>
+      <oepe:project>PS1Application</oepe:project>
+    </oepe:applicationController>
+    <oepe:assemblyUnit id="PS1View">
+      <oepe:project>PS1View</oepe:project>
+    </oepe:assemblyUnit>
+  </oepe:mobileAssembly>
+</oepe:metadata>

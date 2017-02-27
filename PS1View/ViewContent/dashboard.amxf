@@ -1,0 +1,22 @@
+<amx:fragmentDef xmlns:amx="http://xmlns.oracle.com/adf/mf/amx">
+	<fragment xmlns="http://xmlns.oracle.com/adf/mf/amx/fragment">
+		<attribute>
+			<attribute-type>String</attribute-type>
+			<attribute-name>imageStyle</attribute-name>
+			<default-value>height:1.6em; margin:0 calc(.38em/2)</default-value>
+		</attribute>
+		<attribute>
+			<attribute-type>String</attribute-type>
+			<attribute-name>textStyle</attribute-name>
+			<default-value>font:.78rem/1 monospace; text-align:right</default-value>
+		</attribute>
+	</fragment>
+
+	<amx:commandLink action="dashboard">
+		<amx:image inlineStyle="#{imageStyle}"
+			source="#{preferenceScope.application.context.logo}" />
+		<!-- amx:outputText inlineStyle="#{textStyle}"
+			value="#{applicationScope.status}" /-->
+	</amx:commandLink>
+
+</amx:fragmentDef>

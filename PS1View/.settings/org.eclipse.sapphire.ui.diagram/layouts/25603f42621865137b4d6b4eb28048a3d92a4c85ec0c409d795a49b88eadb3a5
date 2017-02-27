@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram-geometry>
+    <node>
+        <id>view#Map#0</id>
+        <bounds x="177" y="186"/>
+    </node>
+    <node>
+        <id>view#Item#1</id>
+        <bounds x="177" y="336"/>
+    </node>
+    <node>
+        <id>view#list#2</id>
+        <bounds x="177" y="486"/>
+    </node>
+    <node>
+        <id>view#Issue#3</id>
+        <bounds x="177" y="636"/>
+    </node>
+    <node>
+        <id>view#Dashboard#4</id>
+        <bounds x="177" y="786"/>
+    </node>
+    <node>
+        <id>methodCall#getCurrentPosition#0</id>
+        <bounds x="318" y="36"/>
+    </node>
+    <node>
+        <id>methodCall#save#1</id>
+        <bounds x="318" y="186"/>
+    </node>
+    <node>
+        <id>methodCall#home#2</id>
+        <bounds x="318" y="336"/>
+    </node>
+    <node>
+        <id>wildCardRule#*#0</id>
+        <bounds x="36" y="198"/>
+    </node>
+    <node>
+        <id>wildCardRule#*#1</id>
+        <bounds x="36" y="348"/>
+    </node>
+    <node>
+        <id>wildCardRule#*#2</id>
+        <bounds x="36" y="498"/>
+    </node>
+    <node>
+        <id>wildCardRule#*#3</id>
+        <bounds x="36" y="648"/>
+    </node>
+    <node>
+        <id>wildCardRule#*#4</id>
+        <bounds x="36" y="798"/>
+    </node>
+</diagram-geometry>

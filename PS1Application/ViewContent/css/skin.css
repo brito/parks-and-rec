@@ -1,0 +1,31 @@
+/*
+	Oracle MAF Application Skin
+	
+	Oracle North America Sales
+	Public Sector Fusion Middleware
+	Advanced Engineering Group
+	NAS PS FMW AEG
+	2016
+*/
+@charset 'UTF-8';
+
+/* fontawesome.io by @davegandy */
+@import 'font-awesome.min.css';
+
+/* All typography should cascade from one rule */
+* { margin:0; padding:0; border:0; border-radius:0; box-sizing:border-box;
+	font:100%/1.6rem Avenir,Open Sans,Segoe UI,sans-serif; color:inherit }
+.amx-inputText-content { font-family:inherit !important }
+	
+/* TIP: Set styleClass from fontawesome.io/icons */
+:before { font-family:FontAwesome; font-size:1.27em; min-width:1.6em; 
+	text-align:center; display:inline-block }
+	
+/* Allow negative margin for 'top' and 'bottom' facet content */
+.amx-panelStretchLayout_center { overflow:visible }
+
+/* listItem > inputText */
+html .amx-listItem .field-value { padding:0 30px 0 0 }
+
+/* design grid * /
+* { background:rgba(255,0,0,.1); outline:1px dotted } /**/
